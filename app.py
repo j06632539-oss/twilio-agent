@@ -19,9 +19,8 @@ async def inbound(Body: str = Form(""), From: str = Form("")):
         "Hello 👋\n"
         "This number is not monitored for messages.\n\n"
         "For assistance, please use one of the following options:\n"
-        "• WhatsApp: https://wa.me/14254949012\n"
+        WHATSAPP_URL = "https://api.whatsapp.com/send?phone=14254949012&text=Hello!%20I’d%20like%20to%20book%20a%20cleaning."
         "• Call/Text: (425) 494-9012\n"
-        "• Booking Portal: https://casacleaningwa.bookingkoala.com/client\n\n"
         "Thank you for reaching out!"
     )
 
