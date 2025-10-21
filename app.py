@@ -47,8 +47,18 @@ async def health():
     return Response(content="ok", media_type="text/plain")
 
 @app.post("/twilio/inbound")
+@app.post("/twilio/inbound")
 async def inbound(Body: str = Form(""), From: str = Form("")):
-    reply_text = generate_reply(Body)
-    twiml = MessagingResponse()
-    twiml.message(reply_text)
-    return Response(content=str(twiml), media_type="application/xml")
+    reply = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<Response>'
+        '<Message>'
+        "Hello! To estimate your cleaning, please provide your ZIP code, number of bedrooms and bathrooms, "
+        "and the type of service (Standard / Deep / Move-Out). "
+        "We can offer time windows between 8–10 AM, 10–12 PM, or 1–3 PM. Which one do you prefer?"
+        '</Message>'
+        '</Response>'
+    )
+
+    # This line ensures Twilio reads it correctly as an XML response
+    return Response(content=reply, media_type="application/xml")
